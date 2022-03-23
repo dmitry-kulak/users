@@ -16,7 +16,9 @@ export const UserProfile = () => {
   const state = useSelector((state: UsersState) => state);
 
   useEffect(() => {
-    document.title = state.users[+userId].name;
+    if (state.users[+userId - 1]) {
+      document.title = state.users[+userId - 1].username;
+    }
   }, [state, userId]);
 
   const handleEditButtonClick = () => setIsEditing(!isEditing);
@@ -38,7 +40,7 @@ export const UserProfile = () => {
     };
 
     if (!state.isUsersLoading) {
-      const user = copyObject(state.users[+userId]);
+      const user = copyObject(state.users[+userId - 1]);
 
       initialValues = {
         name: user.name,
