@@ -1,0 +1,36 @@
+@use "/src/utils/mixins" as mixins;
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: sticky;
+
+  min-width: 150px;
+
+  background-color: #bdbdbd;
+}
+
+.content {
+  margin-top: 40px;
+}
+
+.heading {
+  @include mixins.font(12px);
+
+  margin-bottom: 8px;
+}
+
+.sortButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sortButton {
+  @include mixins.font(12px);
+  @include mixins.button();
+
+  margin-bottom: 9px;
+}

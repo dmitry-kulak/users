@@ -1,0 +1,24 @@
+@use "/src/utils/mixins" as mixins;
+
+.body {
+  width: 100%;
+  background-color: white;
+}
+
+.content {
+  margin: 25px 40px 0;
+}
+
+.heading {
+  @include mixins.font(14px, bold);
+}
+
+.usersFound {
+  font-size: 12px;
+  text-align: end;
+}
+
+.skeleton {
+  height: 72px;
+  margin-bottom: 14px;
+}

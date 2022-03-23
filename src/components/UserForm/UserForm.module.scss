@@ -1,0 +1,19 @@
+@use "/src/utils/mixins" as mixins;
+
+.body {
+  border: 1px solid #f3f3f3;
+  border-radius: 8px;
+  box-sizing: border-box;
+
+  margin-top: 12px;
+  padding: 20px 12px;
+}
+
+.submitButton {
+  @include mixins.font(12px);
+  @include mixins.button(5px 14px, mixins.$button-success-color);
+
+  align-self: flex-end;
+  width: fit-content;
+  margin-top: 12px;
+}

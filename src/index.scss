@@ -1,0 +1,11 @@
+@use "/src/utils/mixins" as mixins;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import-normalize;
+
+body {
+  @include mixins.font();
+
+  background-color: rgba(150, 150, 150, 0.25);
+  margin: 0;
+}

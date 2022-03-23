@@ -1,0 +1,33 @@
+@use "/src/utils/mixins" as mixins;
+
+@include mixins.body();
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.heading,
+.headerButtons {
+  font-size: 14px;
+  margin: 0;
+}
+
+.editButton {
+  @include mixins.font(12px);
+  @include mixins.button(7px 14px);
+  height: 100%;
+}
+
+.exitButton {
+  @include mixins.font(12px);
+  @include mixins.button(7px 14px);
+
+  height: 100%;
+  margin-left: 1rem;
+}

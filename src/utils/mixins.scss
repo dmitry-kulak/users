@@ -1,0 +1,50 @@
+$button-primary-color: #4b51ef;
+$button-inactive-color: #afafaf;
+$button-success-color: #52cf4f;
+
+$font-color-grey: #a3a3a3;
+$font-color-link: #4b51ef;
+
+@mixin font($font-size: 14px, $font-weight: normal) {
+  font-family: "Roboto", sans-serif;
+  font-size: $font-size;
+  font-weight: $font-weight;
+}
+
+@mixin body {
+  .body {
+    width: 100%;
+    background-color: white;
+  }
+
+  .content {
+    margin: 25px 40px 0;
+  }
+}
+
+@mixin button($padding: 5px 14px, $bgcolor: $button-primary-color) {
+  border: none;
+  border-radius: 5px;
+  background-color: $bgcolor;
+
+  color: white;
+
+  cursor: pointer;
+
+  padding: $padding;
+
+  transition: background-color 0.05s;
+
+  &:hover {
+    background-color: lighten($bgcolor, 2%);
+  }
+
+  &:active {
+    background-color: lighten($bgcolor, 5%);
+  }
+
+  &:disabled {
+    background-color: $button-inactive-color;
+    cursor: unset;
+  }
+}

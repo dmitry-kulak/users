@@ -1,0 +1,72 @@
+@use "/src/utils/mixins" as mixins;
+
+$border-color: #d8d8d8;
+$error-color: #d91313;
+
+.body {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 10px;
+}
+
+.label {
+  @include mixins.font(8px);
+  // too small!
+}
+
+.input,
+.textarea {
+  @include mixins.font(12px);
+
+  background: none;
+
+  border: 1px solid $border-color;
+  box-sizing: border-box;
+  border-radius: 5px;
+
+  padding: 4px 9px;
+  margin-top: 2px;
+  width: 50%;
+
+  outline: none;
+
+  transition: border-color 0.05s;
+
+  &Error {
+    border-color: $error-color;
+  }
+
+  &:focus,
+  &:focus-visible {
+    border-color: darken($border-color, 50%);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: rgba(0, 0, 0, 0.3);
+  }
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.inputSkeleton {
+  width: 50%;
+  height: 24px;
+  margin-top: 2px;
+}
+
+.textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+.errorMessage {
+  @include mixins.font(8px);
+
+  color: $error-color;
+  margin-top: 2px;
+  margin-bottom: 0;
+}
