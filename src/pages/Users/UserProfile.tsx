@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import styles from "./styles/UserProfile.module.scss";
@@ -14,6 +14,10 @@ export const UserProfile = () => {
   const navigate = useNavigate();
   const { userId } = useParams() as { userId: string };
   const state = useSelector((state: UsersState) => state);
+
+  useEffect(() => {
+    document.title = state.users[+userId].name;
+  }, [state, userId]);
 
   const handleEditButtonClick = () => setIsEditing(!isEditing);
   const handleExitButtonClick = () => navigate("/users/all");

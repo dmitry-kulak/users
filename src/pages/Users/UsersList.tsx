@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -10,6 +10,10 @@ import { ErrorComponent } from "../../components/ErrorComponent/ErrorComponent";
 
 export const UsersList = () => {
   const state = useSelector((state: UsersState) => state);
+
+  useEffect(() => {
+    document.title = "Users";
+  }, []);
 
   const renderList = ({ users, isUsersLoading, error }: UsersState) => {
     if (isUsersLoading) {
