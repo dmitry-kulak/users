@@ -18,7 +18,7 @@ export const UserProfile = () => {
 
   useEffect(() => {
     if (state.users[+userId - 1]) {
-      document.title = state.users[+userId - 1].username;
+      document.title = state.users[+userId - 1].name;
     }
   }, [state, userId]);
 
