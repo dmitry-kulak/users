@@ -1,5 +1,5 @@
+import { SortBy } from "../store/slices/usersSlice";
 import { User } from "../types/usersTypes";
-import { SortBy } from "../store/reducers/usersReducer";
 import { copyObject } from "./copyObject";
 
 export const sortUsers = (users: User[], sortBy: SortBy) => {

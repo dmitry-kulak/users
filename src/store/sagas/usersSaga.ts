@@ -3,46 +3,50 @@ import { SagaIterator } from "redux-saga";
 import { call, put, takeEvery, select } from "redux-saga/effects";
 
 import { FormFieldsRequest, User } from "../../types/usersTypes";
+import { RootState } from "../index";
 import { getUsers, putUser } from "../../api/users.api";
-import {
-  LoadUsers,
-  LoadUsersFail,
-  LoadUsersSuccess,
-  PutUser,
-  PutUserFail,
-  PutUserSuccess,
-} from "../actions/usersActions";
-import { SortBy, UsersState } from "../reducers/usersReducer";
 import { sortUsers } from "../../utils/sortUsers";
+import {
+  loadUsersFail,
+  loadUsersSuccess,
+  putUserFail,
+  putUserSuccess,
+  putUserAction,
+  loadUsersAction,
+  SortBy,
+  putUserActionType,
+} from "../slices/usersSlice";
 
 function* fetchUsers() {
   try {
-    const sortBy: SortBy = yield select((state: UsersState) => state.sortBy);
+    const sortBy: SortBy = yield select(
+      (state: RootState) => state.users.sortBy
+    );
 
     const response: AxiosResponse<User[]> = yield call(getUsers);
 
     const sortedUsers = sortUsers(response.data, sortBy);
 
-    yield put({ ...new LoadUsersSuccess(sortedUsers) });
+    yield put(loadUsersSuccess(sortedUsers));
   } catch (err) {
-    yield put({ ...new LoadUsersFail(err as Error) });
+    yield put(loadUsersFail(err as Error));
   }
 }
 
-function* updateUser(action: PutUser) {
+function* updateUser(action: putUserActionType) {
   try {
     const response: AxiosResponse<FormFieldsRequest> = yield call(
       putUser,
-      action.formFields
+      action.payload
     );
 
-    yield put({ ...new PutUserSuccess(response.data) });
+    yield put(putUserSuccess(response.data));
   } catch (err) {
-    yield put({ ...new PutUserFail(err as Error) });
+    yield put(putUserFail(err as Error));
   }
 }
 
 export function* usersWatcher(): SagaIterator {
-  yield takeEvery(LoadUsers.Name, fetchUsers);
-  yield takeEvery(PutUser.Name, updateUser);
+  yield takeEvery(loadUsersAction.type, fetchUsers);
+  yield takeEvery(putUserAction.type, updateUser);
 }

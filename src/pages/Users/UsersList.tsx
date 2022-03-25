@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+
+import { UsersState } from "../../store/slices/usersSlice";
+import { useAppSelector } from "../../store/hooks";
 
 import styles from "./styles/UsersList.module.scss";
 import { ErrorComponent } from "../../components/ErrorComponent/ErrorComponent";
 import { UserCard } from "../../components/UserCard/UserCard";
-import { UsersState } from "../../store/reducers/usersReducer";
 
 export const UsersList = () => {
-  const state = useSelector((state: UsersState) => state);
+  const state = useAppSelector((state) => state.users);
 
   useEffect(() => {
     document.title = "Users";

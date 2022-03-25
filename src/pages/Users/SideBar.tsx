@@ -1,16 +1,16 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+
+import { setSortBy, SortBy } from "../../store/slices/usersSlice";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 import styles from "./styles/Sidebar.module.scss";
-import { SetSortBy } from "../../store/actions/usersActions";
-import { SortBy, UsersState } from "../../store/reducers/usersReducer";
 
 export const SideBar = () => {
-  const sortBy = useSelector((state: UsersState) => state.sortBy);
-  const dispatch = useDispatch();
+  const sortBy = useAppSelector((state) => state.users.sortBy);
+  const dispatch = useAppDispatch();
 
   const handleClick = (sortBy: SortBy) => {
-    return () => dispatch({ ...new SetSortBy(sortBy) });
+    return () => dispatch(setSortBy(sortBy));
   };
 
   return (

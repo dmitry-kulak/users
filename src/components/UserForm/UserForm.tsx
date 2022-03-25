@@ -1,10 +1,11 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import { useDispatch } from "react-redux";
+
+import { useAppDispatch } from "../../store/hooks";
+import { putUserAction } from "../../store/slices/usersSlice";
 
 import { FormField } from "../FormField/FormField";
 import { FormFields, UserFormField } from "../../types/usersTypes";
-import { PutUser } from "../../store/actions/usersActions";
 import { formFields } from "./formFields";
 import { validationSchema } from "./validationSchema";
 
@@ -23,7 +24,7 @@ export const UserForm = ({
   userId,
   isUsersLoading,
 }: UserFormProp) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const renderFormFields = (formFields: UserFormField[]) =>
     formFields.map((formField) => (
@@ -40,7 +41,7 @@ export const UserForm = ({
 
   const handleSubmit = (formFields: FormFields) => {
     console.log(formFields);
-    dispatch({ ...new PutUser({ ...formFields, userId: userId }) });
+    dispatch(putUserAction({ ...formFields, userId }));
   };
 
   return (

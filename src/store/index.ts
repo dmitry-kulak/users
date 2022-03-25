@@ -1,14 +1,17 @@
-import { createStore, applyMiddleware } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
 
-import { usersReducer } from "./reducers/usersReducer";
-import { usersWatcher } from "./sagas/usersSaga";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { usersSlice } from "./slices/usersSlice";
+import { rootSaga } from "./sagas/rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 
-const composeEnhancers = composeWithDevTools(applyMiddleware(sagaMiddleware));
+export const store = configureStore({
+  reducer: { users: usersSlice.reducer },
+  middleware: [sagaMiddleware],
+});
 
-export const store = createStore(usersReducer, composeEnhancers);
+sagaMiddleware.run(rootSaga);
 
-sagaMiddleware.run(usersWatcher);
+export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;

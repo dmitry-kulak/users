@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+
+import { UsersState } from "../../store/slices/usersSlice";
+import { useAppSelector } from "../../store/hooks";
 
 import styles from "./styles/UserProfile.module.scss";
 import { ErrorComponent } from "../../components/ErrorComponent/ErrorComponent";
 import { FormFields } from "../../types/usersTypes";
 import { UserForm } from "../../components/UserForm/UserForm";
-import { UsersState } from "../../store/reducers/usersReducer";
 import { copyObject } from "../../utils/copyObject";
 
 export const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
   const { userId } = useParams() as { userId: string };
-  const state = useSelector((state: UsersState) => state);
+  const state = useAppSelector((state) => state.users);
 
   useEffect(() => {
     if (state.users[+userId - 1]) {
