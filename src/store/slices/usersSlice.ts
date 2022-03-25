@@ -49,9 +49,9 @@ export const {
   setSortBy,
 } = usersSlice.actions;
 
-export const loadUsersAction = createAction("LOAD_USERS");
+export const loadUsersAction = createAction("users/loadUsers");
 
-export const putUserAction = createAction<FormFieldsRequest, "PUT_USER">(
-  "PUT_USER"
+export const putUserAction = createAction<FormFieldsRequest, "users/putUser">(
+  "users/putUser"
 );
 export type putUserActionType = ReturnType<typeof putUserAction>;
