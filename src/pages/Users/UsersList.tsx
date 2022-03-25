@@ -41,7 +41,7 @@ export const UsersList = () => {
 
         <div className={styles.list}>{renderList(state)}</div>
 
-        {state.isUsersLoading && (
+        {!state.isUsersLoading && (
           <p className={styles.usersFound}>
             Найдено {state.users.length} пользователей
           </p>
