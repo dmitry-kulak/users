@@ -8,6 +8,7 @@
 * Typescript
 * Redux
 * Redux-saga
+* Redux-toolkit
 * Axios
 * CSS-modules
 * SASS
