@@ -1,6 +1,7 @@
 import { createSlice, createAction, PayloadAction } from "@reduxjs/toolkit";
 
 import { FormFieldsRequest, User } from "../../types/usersTypes";
+import { sortUsers } from "../../utils/sortUsers";
 
 export type SortBy = "city" | "company";
 
@@ -31,6 +32,7 @@ export const usersSlice = createSlice({
     },
     setSortBy(state, action: PayloadAction<SortBy>) {
       state.sortBy = action.payload;
+      state.users = sortUsers(state.users, action.payload);
     },
     putUserSuccess(state, action: PayloadAction<FormFieldsRequest>) {
       console.log("updated user on server");
