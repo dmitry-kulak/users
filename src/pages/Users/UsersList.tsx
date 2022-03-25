@@ -4,9 +4,9 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 import styles from "./styles/UsersList.module.scss";
-import { UsersState } from "../../store/reducers/usersReducer";
-import { UserCard } from "../../components/UserCard/UserCard";
 import { ErrorComponent } from "../../components/ErrorComponent/ErrorComponent";
+import { UserCard } from "../../components/UserCard/UserCard";
+import { UsersState } from "../../store/reducers/usersReducer";
 
 export const UsersList = () => {
   const state = useSelector((state: UsersState) => state);

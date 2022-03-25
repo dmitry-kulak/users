@@ -1,7 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import styles from "./UserCard.module.scss";
-import { Link } from "react-router-dom";
 
 type UserCardProps = {
   id: number;

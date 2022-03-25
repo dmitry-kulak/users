@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import styles from "./styles/UserProfile.module.scss";
-import { useSelector } from "react-redux";
-import { UsersState } from "../../store/reducers/usersReducer";
-import { UserForm } from "../../components/UserForm/UserForm";
-import { FormFields } from "../../types/usersTypes";
-import { copyObject } from "../../utils/copyObject";
 import { ErrorComponent } from "../../components/ErrorComponent/ErrorComponent";
+import { FormFields } from "../../types/usersTypes";
+import { UserForm } from "../../components/UserForm/UserForm";
+import { UsersState } from "../../store/reducers/usersReducer";
+import { copyObject } from "../../utils/copyObject";
 
 export const UserProfile = () => {
   const [isEditing, setIsEditing] = useState(false);

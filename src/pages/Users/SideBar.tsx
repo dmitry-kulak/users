@@ -1,7 +1,7 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import styles from "./styles/Sidebar.module.scss";
-import { useDispatch, useSelector } from "react-redux";
 import { SetSortBy } from "../../store/actions/usersActions";
 import { SortBy, UsersState } from "../../store/reducers/usersReducer";
 
